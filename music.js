@@ -61,15 +61,20 @@ const constructChords = (scale, octave) => {
 
 Tone.Transport.bpm.value = 150
 
-const IChord = constructMajorChord(AMinorScale, 3, 'A3');
-const VChord = constructMajorChord(AMinorScale, 3, 'E3');
-const VIChord = constructMajorChord(AMinorScale, 2, 'F3');
-const IVChord = constructMajorChord(AMinorScale, 2, 'D3');
+const IChord = constructMajorChord(AMinorScale, 4, 'A3');
+const VChord = constructMajorChord(AMinorScale, 4, 'E4');
+const VIChord = constructMajorChord(AMinorScale, 3, 'F3');
+const IVChord = constructMajorChord(AMinorScale, 3, 'D3');
 
 IChord.push('A2', 'G4')
 VChord.push('E2', 'G3')
 VIChord.push('F2', 'E4')
 IVChord.push('D2', 'C4')
+
+console.log(IChord);
+console.log(VChord);
+console.log(VIChord);
+console.log(IVChord);
 
 
 const synth = new Tone.PolySynth(5, Tone.Synth, {
@@ -104,10 +109,10 @@ const part = new Tone.Part(function(time, note){
   synth.triggerAttackRelease(note.note, note.duration, time);
 }, mainChords).start(0);
 
-const IChord1 = constructMajorChord(AMinorScale, 4, 'A4');
-const VChord1 = constructMajorChord(AMinorScale, 4, 'E4');
-const VIChord1= constructMajorChord(AMinorScale, 3, 'F4');
-const IVChord1 = constructMajorChord(AMinorScale, 3, 'D4');
+const IChord1 = constructMajorChord(AMinorScale, 5, 'A4');
+const VChord1 = constructMajorChord(AMinorScale, 5, 'E5');
+const VIChord1= constructMajorChord(AMinorScale, 4, 'F4');
+const IVChord1 = constructMajorChord(AMinorScale, 4, 'D4');
 
 IChord.push('A3', 'G5')
 VChord.push('E3', 'D5')
@@ -212,7 +217,6 @@ const lowPass = new Tone.Filter({
 }).toMaster();
 
 const snareDrum = new Tone.NoiseSynth({
-  volume: 8,
   noise: {
     type: 'white',
     playbackRate: 3,
@@ -220,7 +224,7 @@ const snareDrum = new Tone.NoiseSynth({
   envelope: {
     attack: 0.001,
     decay: 0.20,
-    sustain: 0.5,
+    sustain: 0.15,
     release: 0.03,
   },
 }).connect(lowPass);
